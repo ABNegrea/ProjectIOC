@@ -1,0 +1,18 @@
+.DifficultyButton {
+    border:0;
+    background-color: white;
+    font-size: 20px;
+    padding:5px 10px;
+    border-radius: 8px;
+    text-align:center;
+    margin:10px 7px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+.DifficultyButton:hover {
+    transform: scale(1.2);
+}
+.selected {
+    background-color: #80d480;
+}

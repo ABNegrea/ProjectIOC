@@ -1,0 +1,37 @@
+.PageHeader {
+    background-color: #A2D9A2;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height:13%;
+}
+.imageButton {
+    background-color: transparent;
+    border:0;
+    padding:0;
+    border-radius:15px;
+    width: 8%;
+    height: 50%;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    margin-left:auto;
+    margin-right:30px;
+    cursor:pointer;
+}
+.imageButton:hover {
+    background-color: #80d480;
+}
+h1 {
+    margin:0;
+    flex:1;
+    text-align: center;
+    margin-left:10%;
+    color:white;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+.image {
+    display:block;
+    max-width:80%;
+    max-height:80%;
+}
