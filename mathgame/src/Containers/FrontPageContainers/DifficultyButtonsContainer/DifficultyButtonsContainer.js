@@ -1,4 +1,4 @@
-import DifficultyButton from "../../Components/DifficultyButton/DifficultyButton";
+import DifficultyButton from "../../../Components/DifficultyButton/DifficultyButton";
 import "./DifficultyButtonsContainer.css";
 import {useState} from 'react';
 

@@ -1,6 +1,6 @@
 import "./PlayPage.css";
 import PageHeader from "../../Components/PageHeader/PageHeader";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 
 const PlayPage = () => {

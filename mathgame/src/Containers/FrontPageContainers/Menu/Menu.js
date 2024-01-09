@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MenuButton from "../../Components/MenuButton/MenuButton";
+import MenuButton from "../../../Components/MenuButton/MenuButton";
 import DifficultyButtonsContainer from "../DifficultyButtonsContainer/DifficultyButtonsContainer";
 import "./Menu.css";
 import { useNavigate } from "react-router-dom";
