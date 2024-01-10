@@ -8,10 +8,11 @@ const LeaderBoard = () => {
         const storedItems = localStorage.getItem('leaderboard');
         if(storedItems) {
             const parsedItems=JSON.parse(storedItems);
-            console.log(parsedItems)
-            setItems(parsedItems.map(item => 
+            setItems(parsedItems.sort((a,b) => b.score-a.score).map(item => 
                 <LeaderBoardItem name={item.name} score={item.score}/>    
             ));
+        } else {
+            setItems([<h1 className="EmptyLeaderboard">Leaderboard is empty</h1>])
         }
     },[]);
     return (

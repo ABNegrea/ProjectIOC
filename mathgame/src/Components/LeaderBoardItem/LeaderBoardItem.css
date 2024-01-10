@@ -1,6 +1,23 @@
-h2 {
+.itemtext {
     margin:0;
+    font-size:2vw;
 }
 .item {
     display:flex;
+    background-color: white;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    border-radius:5px;
+    width:96%;
+    padding: 5px 2%;
+}
+
+.name {
+    justify-content: center;
+    margin-left:4%;
+}
+
+.score {
+    margin-left:auto;
+    justify-content: center;
+    margin-right:4%;
 }

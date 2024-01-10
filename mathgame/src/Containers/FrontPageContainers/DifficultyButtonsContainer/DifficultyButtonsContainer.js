@@ -3,17 +3,17 @@ import "./DifficultyButtonsContainer.css";
 import {useState} from 'react';
 
 const DifficultyButtonsContainer = (props) => {
-    const [activeButton, setActiveButton] = useState('4');
+    const [activeButton, setActiveButton] = useState('5');
     const setDifficulty = (difficultySelected) => {
         setActiveButton(difficultySelected);
         props.function(difficultySelected);
     }
     return (
         <div className="DifficultyButtonsContainer">
-            <h4>Select Difficulty</h4>
-            <DifficultyButton difficulty="4" function={setDifficulty} active={activeButton==='4'}/>
+            <h4 className="selectdiff">Select Difficulty</h4>
             <DifficultyButton difficulty="5" function={setDifficulty} active={activeButton==='5'}/>
-            <DifficultyButton difficulty="6" function={setDifficulty} active={activeButton==='6'}/>
+            <DifficultyButton difficulty="7" function={setDifficulty} active={activeButton==='7'}/>
+            <DifficultyButton difficulty="9" function={setDifficulty} active={activeButton==='9'}/>
         </div>
     )
 }

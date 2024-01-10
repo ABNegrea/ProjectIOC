@@ -1,0 +1,28 @@
+.tyle {
+    background-image: url("./lily.png");
+    background-size:cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    margin:0;
+}
+.tylebutton {
+    background-color: transparent;
+    border:0;
+    margin:0;
+    padding: 0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:50%;
+    cursor:pointer;
+    color:black;
+}
+.frog {
+    background-image: url("./frog.png");
+    background-size:contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+}

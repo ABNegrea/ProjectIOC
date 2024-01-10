@@ -1,0 +1,39 @@
+.leaderboard {
+    margin-top:6%;
+    background-color: white;
+    height:55%;
+    max-height:55%;
+    width:30%;
+    display:flex;
+    margin-left:auto;
+    margin-right:auto;
+    align-items: center;
+    justify-content: top;
+    flex-direction: column;
+    border-radius:15px;
+    overflow: auto;
+}
+.EmptyLeaderboard {
+    display:flex;
+    border-radius:5px;
+    margin:0;
+    margin-top:40%;
+    font-size: 2.5vw;
+    color:black;
+    padding: 5px 2%;
+}
+.leaderboard::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Change the track color */
+  }
+  
+  /* Style the scrollbar thumb */
+  .leaderboard::-webkit-scrollbar-thumb {
+    background: linear-gradient(to right, #6bb471, #90bb8f); /* Change the gradient colors */
+    border-radius: 5px; /* Rounded corners for the thumb */
+  }
+  
+  /* Optional: Style the scrollbar width and height */
+  .leaderboard::-webkit-scrollbar {
+    width: 8px; /* Change the scrollbar width */
+    height: 8px; /* Change the scrollbar height */
+  }

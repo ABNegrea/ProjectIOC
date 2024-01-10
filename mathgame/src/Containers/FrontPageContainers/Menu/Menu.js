@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Menu = () => {
     const navigate=useNavigate();
-    const [selectedDifficulty,setSelectedDifficulty] = useState('4');
+    const [selectedDifficulty,setSelectedDifficulty] = useState('5');
     
     const playOnClick = () => {
 
