@@ -1,8 +1,10 @@
 import "./PlayPage.css";
 import PageHeader from "../../Components/PageHeader/PageHeader";
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import TyleContainer from "../../Containers/PlayPageContainers/TyleContainer/TyleContainer";
+import Score from "../../Containers/PlayPageContainers/Score/Score";
+import Modal from "../../Containers/PlayPageContainers/Modal/Modal";
 
 function generateExpression(targetNumber) {
     const operators = ['+', '-', '*'];
@@ -60,26 +62,38 @@ function generateExpression(targetNumber) {
       expression = generateRandomExpression();
       found = isValidExpression(expression);
     }
-  
     return expression;
 }
   
   // Exemplu de utilizare: generare pentru un număr dat
 
-const generatePath = (matrixSize) => {
-    const generatedExpression = generateExpression(80);
-    console.log(generatedExpression);
+const generatePath = (matrixSize,target) => {
+    const generatedExpression = generateExpression(target);
     let matrix;
     let foundCorrect=true;
     do {
+        let randomVariable = parseInt(Math.random());
+        let randomVariable2 = parseInt(Math.random());
+    
+        if (randomVariable==0) randomVariable=-1;
+    
         foundCorrect=true;
         matrix=Array(matrixSize).fill('').map(() => new Array(matrixSize).fill(''));
-        let currentPosition=[parseInt(matrixSize/2),parseInt(matrixSize/2)];
+        let currentPosition=[parseInt(matrixSize/2)+randomVariable,parseInt(matrixSize/2)+randomVariable2];
+        if(randomVariable2==0) {
+            currentPosition=[parseInt(matrixSize/2)+randomVariable,parseInt(matrixSize/2)];
+        }
+        else {
+            currentPosition=[parseInt(matrixSize/2),parseInt(matrixSize/2)+randomVariable];
+        }
+        matrix[parseInt(matrixSize/2)][parseInt(matrixSize/2)]=null;
         let size=generatedExpression.toString().split('').length;
         let counter=0;
         generatedExpression.toString().split('').forEach(element => {
             let toAdd=element!="*" ? element : "x";
-            console.log(toAdd);
+            if(toAdd!="x" && toAdd!="+" && toAdd!="-") {
+                toAdd=parseInt(toAdd);
+            }
             matrix[currentPosition[0]][currentPosition[1]]=toAdd;
             counter+=1;
             if(counter<size) {
@@ -110,7 +124,7 @@ const generatePath = (matrixSize) => {
     for(let i=0;i<matrixSize;i++)
         for(let j=0;j<matrixSize;j++)
             if(matrix[i][j]=='') {
-                if((i+j)%2==0) {
+                if((i+j)%2!==0) {
                     matrix[i][j]=parseInt(Math.random()*9+1);
                 } else {
                     matrix[i][j]=operators[parseInt(Math.random()*3)];
@@ -123,10 +137,64 @@ const PlayPage = () => {
     const location=useLocation();
     const difficulty = location.search[1];
     const [matrix,setMatrix] = useState(null);
-    
+    const [target,setTarget] = useState(parseInt(Math.random()*100+1));
+    const [score,setScore] = useState(0);
+    const [string,setString] = useState('');
+    const [sum,setSum] = useState(0);
+    const [showModal, setShowModal] = useState(false);
+
+    const ref = useRef();
+
+    const reset = () => ref.current.reset();
+
+    const handleConfirmAction = (name) => {
+        let leaderboard=localStorage.getItem('leaderboard');
+        let OldData=[];
+        if(leaderboard) {
+            OldData=JSON.parse(leaderboard);
+        }
+        const newItem= {
+            name:name,
+            score:score
+        }
+        OldData.push(newItem);
+        localStorage.setItem('leaderboard',JSON.stringify(OldData));
+        setSum(0);
+        setString('');
+        setScore(score => 0);
+        const newTarget=parseInt(Math.random()*100+1);
+        setTarget(target => newTarget);
+        reset();
+        setMatrix(null);
+    }
+
+    const updateScore = (step) => {
+        let newScore=sum;
+        if(typeof step === 'number')
+            if(string==''){
+                newScore+=step;
+                setSum(newScore);
+            }
+            else {
+                const lastSign=string.split("")[string.split("").length-1];
+                if(lastSign=="x") {newScore=sum*step;setSum(newScore);}
+                else if(lastSign=="+") {newScore=sum+step;setSum(newScore);}
+                else if(lastSign=="-") {newScore=sum-step;setSum(newScore);}
+            }
+        setString(string => string+step.toString());
+        if (newScore==target) {
+            setSum(0);
+            setString('');
+            setScore(score => score+5*parseInt(parseInt(difficulty)/2-1));
+            const newTarget=parseInt(Math.random()*100+1);
+            setTarget(target => newTarget);
+            reset();
+            setMatrix(null);
+        }
+    }
     useEffect(() => {
-        setMatrix(generatePath(parseInt(difficulty)));
-    },[]);
+        setMatrix(generatePath(parseInt(difficulty),target));
+    },[target]);
 
     if(!matrix) {
         return (
@@ -139,7 +207,13 @@ const PlayPage = () => {
         return (
             <div className="PlayPage">
                 <PageHeader title="Mathematician Frog"/>
-                <TyleContainer matrix={matrix} difficulty={difficulty}/>
+                <TyleContainer ref={ref} updateScore={updateScore} matrix={matrix} difficulty={difficulty}/>
+                <Score lostGame={setShowModal} target={target} currentSum={sum} currentString={string} currentScore={score}/>
+                <Modal
+                    isOpen={showModal}
+                    onClose={setShowModal}
+                    onConfirm={handleConfirmAction}
+                />
             </div>
         );
     }
