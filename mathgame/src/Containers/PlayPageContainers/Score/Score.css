@@ -17,10 +17,11 @@
   .h5 {
     margin-bottom: 10px;
     width:100%;
+    font-size:1.6vh;
   }
   
-  #giveup {
-    margin-top: 50px;
+  .giveup {
+    margin-top: 10px;
     padding: 8px 16px;
     border: none;
     border-radius: 4px;
@@ -29,16 +30,16 @@
     transition: background-color 0.3s ease;
   }
   
-  #giveup:hover {
+  .giveup:hover {
     background-color: rgb(98, 148, 98);
   }
   #currentString {
-    font-size:1.2vw;
+    font-size:1.6vh;
   }
   h4 {
     margin:0;
     margin-bottom:5px;
-    font-size:2.2vw;
+    font-size:2vh;
     width:100%;
   }
   .Score::-webkit-scrollbar-track {

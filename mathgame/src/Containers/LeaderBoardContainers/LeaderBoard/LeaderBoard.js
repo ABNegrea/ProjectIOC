@@ -8,11 +8,11 @@ const LeaderBoard = () => {
         const storedItems = localStorage.getItem('leaderboard');
         if(storedItems) {
             const parsedItems=JSON.parse(storedItems);
-            setItems(parsedItems.sort((a,b) => b.score-a.score).map(item => 
-                <LeaderBoardItem name={item.name} score={item.score}/>    
+            setItems(parsedItems.sort((a,b) => b.score-a.score).map((item,index) => 
+                <LeaderBoardItem key={index} name={item.name} score={item.score}/>    
             ));
         } else {
-            setItems([<h1 className="EmptyLeaderboard">Leaderboard is empty</h1>])
+            setItems([<h1 className="EmptyLeaderboard">Clasamentul e gol</h1>])
         }
     },[]);
     return (

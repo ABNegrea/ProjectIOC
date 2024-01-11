@@ -10,7 +10,7 @@ const DifficultyButtonsContainer = (props) => {
     }
     return (
         <div className="DifficultyButtonsContainer">
-            <h4 className="selectdiff">Select Difficulty</h4>
+            <h4 className="selectdiff">Alege dificultatea</h4>
             <DifficultyButton difficulty="5" function={setDifficulty} active={activeButton==='5'}/>
             <DifficultyButton difficulty="7" function={setDifficulty} active={activeButton==='7'}/>
             <DifficultyButton difficulty="9" function={setDifficulty} active={activeButton==='9'}/>

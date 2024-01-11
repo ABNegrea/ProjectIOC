@@ -19,9 +19,9 @@ const Menu = () => {
 
     return (
         <div className="Menu">
-            <MenuButton text="Play" function={playOnClick}/>
+            <MenuButton text="Joaca" function={playOnClick}/>
             <DifficultyButtonsContainer function={selectDifficulty}/>
-            <MenuButton text="Leaderboard" function={leaderboardOnClick}/>
+            <MenuButton text="Clasament" function={leaderboardOnClick}/>
         </div>
     );
 }

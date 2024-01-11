@@ -3,10 +3,6 @@ import './Modal.css'; // Create this CSS file for styling
 
 const Modal = ({ isOpen, onClose, onConfirm }) => {
     const [inputText, setInputText] = useState('');
-    
-    const disabledStyle={
-
-    }
   const handleClose = () => {
     setInputText('');
     onClose(false);
@@ -22,15 +18,15 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
     isOpen && (
       <div className="modal-overlay">
         <div className="modal-content">
-          <p>Insert a name to save your score:</p>
+          <p>Scrie un nume pentru a salva scorul:</p>
           <input 
                 type='text' 
-                placeholder='name...' 
+                placeholder='nume...' 
                 onChange={(e) => setInputText(e.target.value)}
           />
           <div className="modal-buttons">
-            <button onClick={handleConfirm} id="Confirm" disabled={inputText==''}>Confirm</button>
-            <button onClick={handleClose} id="Cancel">Cancel</button>
+            <button onClick={handleConfirm} id="Confirm" disabled={inputText==''}>Confirma</button>
+            <button onClick={handleClose} id="Cancel">Anuleaza</button>
           </div>
         </div>
       </div>

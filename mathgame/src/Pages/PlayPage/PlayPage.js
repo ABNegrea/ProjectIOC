@@ -68,6 +68,7 @@ function generateExpression(targetNumber) {
   // Exemplu de utilizare: generare pentru un număr dat
 
 const generatePath = (matrixSize,target) => {
+
     const generatedExpression = generateExpression(target);
     let matrix;
     let foundCorrect=true;
@@ -150,7 +151,7 @@ const PlayPage = () => {
     const handleConfirmAction = (name) => {
         let leaderboard=localStorage.getItem('leaderboard');
         let OldData=[];
-        if(leaderboard) {
+        if(leaderboard!=='[object Object]' && leaderboard!==null) {
             OldData=JSON.parse(leaderboard);
         }
         const newItem= {
@@ -159,6 +160,9 @@ const PlayPage = () => {
         }
         OldData.push(newItem);
         localStorage.setItem('leaderboard',JSON.stringify(OldData));
+        retry();
+    }
+    const retry = () => {
         setSum(0);
         setString('');
         setScore(score => 0);
@@ -167,7 +171,6 @@ const PlayPage = () => {
         reset();
         setMatrix(null);
     }
-
     const updateScore = (step) => {
         let newScore=sum;
         if(typeof step === 'number')
@@ -181,7 +184,11 @@ const PlayPage = () => {
                 else if(lastSign=="+") {newScore=sum+step;setSum(newScore);}
                 else if(lastSign=="-") {newScore=sum-step;setSum(newScore);}
             }
-        setString(string => string+step.toString());
+        if(step == "x" && (string.charAt(string.length - 2)=="+" || string.charAt(string.length - 2)=="-")) {
+            setString(string => `(${string})${step.toString()}`);
+        } else {
+            setString(string => string+step.toString());
+        }
         if (newScore==target) {
             setSum(0);
             setString('');
@@ -206,9 +213,9 @@ const PlayPage = () => {
     } else {
         return (
             <div className="PlayPage">
-                <PageHeader title="Mathematician Frog"/>
+                <PageHeader title="Broasca matematiciana"/>
                 <TyleContainer ref={ref} updateScore={updateScore} matrix={matrix} difficulty={difficulty}/>
-                <Score lostGame={setShowModal} target={target} currentSum={sum} currentString={string} currentScore={score}/>
+                <Score save={setShowModal} retry={retry} target={target} currentSum={sum} currentString={string} currentScore={score}/>
                 <Modal
                     isOpen={showModal}
                     onClose={setShowModal}

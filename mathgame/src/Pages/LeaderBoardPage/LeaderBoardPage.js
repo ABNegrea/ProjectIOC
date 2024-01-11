@@ -4,7 +4,7 @@ import LeaderBoard from "../../Containers/LeaderBoardContainers/LeaderBoard/Lead
 const LeaderBoardPage = () => {
     return (
         <div className="LeaderBoardPage">
-            <PageHeader title="Leaderboard"/>
+            <PageHeader title="Clasament"/>
             <LeaderBoard/>
         </div>
     );
