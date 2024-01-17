@@ -5,7 +5,7 @@ import { useEffect, useState,useRef } from "react";
 import TyleContainer from "../../Containers/PlayPageContainers/TyleContainer/TyleContainer";
 import Score from "../../Containers/PlayPageContainers/Score/Score";
 import Modal from "../../Containers/PlayPageContainers/Modal/Modal";
-
+import Instructions from "../../Containers/PlayPageContainers/Instructions/Instructions";
 function generateExpression(targetNumber) {
     const operators = ['+', '-', '*'];
   
@@ -216,6 +216,7 @@ const PlayPage = () => {
                 <PageHeader title="Broasca matematiciana"/>
                 <TyleContainer ref={ref} updateScore={updateScore} matrix={matrix} difficulty={difficulty}/>
                 <Score save={setShowModal} retry={retry} target={target} currentSum={sum} currentString={string} currentScore={score}/>
+                <Instructions/>
                 <Modal
                     isOpen={showModal}
                     onClose={setShowModal}
