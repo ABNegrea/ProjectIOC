@@ -5,7 +5,7 @@ import "./FrontPage.css";
 const FrontPage = () => {
     return (
         <div className="FrontPage">
-            <PageHeader title="Broasca matematiciana"/>
+            <PageHeader title="Broscuta matematiciana"/>
             <Menu/>
         </div>
     );

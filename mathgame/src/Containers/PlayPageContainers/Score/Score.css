@@ -31,6 +31,9 @@
   }
   
   .giveup:hover {
+    background-color: rgb(201, 122, 122)
+  }
+  #save:hover {
     background-color: rgb(98, 148, 98);
   }
   #currentString {

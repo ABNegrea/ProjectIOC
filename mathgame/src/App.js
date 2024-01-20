@@ -6,6 +6,7 @@ import PlayPage from './Pages/PlayPage/PlayPage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 const App = () => {
+  document.title = "Brocuta Matematiciana"
   return (
     <Router>
       <Routes>

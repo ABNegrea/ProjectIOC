@@ -6,6 +6,7 @@ import TyleContainer from "../../Containers/PlayPageContainers/TyleContainer/Tyl
 import Score from "../../Containers/PlayPageContainers/Score/Score";
 import Modal from "../../Containers/PlayPageContainers/Modal/Modal";
 import Instructions from "../../Containers/PlayPageContainers/Instructions/Instructions";
+import Target from "../../Containers/PlayPageContainers/Target/Target";
 function generateExpression(targetNumber) {
     const operators = ['+', '-', '*'];
   
@@ -166,10 +167,24 @@ const PlayPage = () => {
         setSum(0);
         setString('');
         setScore(score => 0);
-        const newTarget=parseInt(Math.random()*100+1);
+        let newTarget=0;
+        do {
+            newTarget=parseInt(Math.random()*difficulty*10+11);
+        }while(newTarget===target);
         setTarget(target => newTarget);
         reset();
         setMatrix(null);
+    }
+
+    const reload = () => {
+        setSum(0);
+        setString('');
+        const newScore = parseInt(score-parseInt(5*parseInt(parseInt(difficulty)/2-1)/3));
+        if (newScore>0) {
+            setScore(score => newScore);
+        }
+        else setScore(0);
+        reset();
     }
     const updateScore = (step) => {
         let newScore=sum;
@@ -213,9 +228,10 @@ const PlayPage = () => {
     } else {
         return (
             <div className="PlayPage">
-                <PageHeader title="Broasca matematiciana"/>
+                <PageHeader title="Broscuta matematiciana"/>
                 <TyleContainer ref={ref} updateScore={updateScore} matrix={matrix} difficulty={difficulty}/>
-                <Score save={setShowModal} retry={retry} target={target} currentSum={sum} currentString={string} currentScore={score}/>
+                <Target target={target} currentSum={sum}/>
+                <Score save={setShowModal} reload={reload} retry={retry} currentString={string} currentScore={score}/>
                 <Instructions/>
                 <Modal
                     isOpen={showModal}
